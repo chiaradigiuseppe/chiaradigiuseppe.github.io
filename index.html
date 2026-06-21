@@ -41,7 +41,7 @@ const CONFIG = {
       isThesis: true,
       title:    "POP Tale",
       category: "animation",
-      cover:    "",
+      cover:    "tesi/cover.jpg",
       description: {
         en: "Graduation short film — a lazy farmer, a suspicious product, and a corn field that gets wildly out of hand.",
         it: "Cortometraggio di tesi — un contadino pigro, un prodotto sospetto e un campo di pannocchie che prende una piega inaspettata."
@@ -55,7 +55,7 @@ const CONFIG = {
       isThesis: false,
       title:    "Animation Reel",
       category: "animation",
-      cover:    "",
+      cover:    "reel/cover.jpg",
       description: {
         en: "A collection of character animations — bipeds and quadrupeds, from walk cycles to action sequences.",
         it: "Una raccolta di animazioni di personaggi — bipedi e quadrupedi, dai cicli di camminata alle scene d'azione."
@@ -466,12 +466,12 @@ section{padding:7rem 3rem;}
 .pp-banner{
   position:absolute;
   top:0;right:0;
-  width:55%;
-  height:clamp(280px,65vh,620px);
+  width:62%;
+  height:clamp(300px,70vh,680px);
   background-size:cover;
   background-position:center top;
-  -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 45%, transparent 75%);
-  mask-image:linear-gradient(to left, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 45%, transparent 75%);
+  -webkit-mask-image:linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.15) 28%, rgba(0,0,0,0.55) 52%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,1) 100%);
+  mask-image:linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.15) 28%, rgba(0,0,0,0.55) 52%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,1) 100%);
   z-index:0;
   pointer-events:none;
 }
