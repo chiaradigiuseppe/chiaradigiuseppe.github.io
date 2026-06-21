@@ -109,18 +109,18 @@ const CONFIG = {
       isThesis: false,
       title:    "Sketch Project",
       category: "project",
-      cover:    "",
+      cover:    "sketch-to-3d/05-compositing.png",
       description: {
         en: "A personal project that started from a very simple sketch (not mine), evolving first into modeling, then through texturing, rendering and final compositing.",
         it: "Un progetto personale partito da uno sketch semplicissimo (non mio), da cui sono passata in primis alla modellazione e successivamente al texturing, rendering e compositing finale."
       },
       page: {
         timeline: [
-          { stepKey: "sketch",      image: "sketch-to-3d/01-sketch.png" },
-          { stepKey: "modeling",    image: "sketch-to-3d/02-modeling.png" },
-          { stepKey: "texturing",   image: "sketch-to-3d/03-texturing.png" },
-          { stepKey: "rendering",   image: "sketch-to-3d/04-rendering.png" },
-          { stepKey: "compositing", image: "sketch-to-3d/05-compositing.png" }
+          { stepKey: "sketch",      descKey: "sketchDesc",      image: "sketch-to-3d/01-sketch.jpg" },
+          { stepKey: "modeling",    descKey: "modelingDesc",    image: "sketch-to-3d/02-modeling.png" },
+          { stepKey: "texturing",   descKey: "texturingDesc",   image: "sketch-to-3d/03-texturing.png" },
+          { stepKey: "rendering",   descKey: "renderingDesc",   image: "sketch-to-3d/04-rendering.png" },
+          { stepKey: "compositing", descKey: "compositingDesc", image: "sketch-to-3d/05-compositing.png" }
         ]
       }
     },
@@ -129,13 +129,14 @@ const CONFIG = {
       isThesis: false,
       title:    "Sprout Tower",
       category: "environment",
-      cover:    "",
+      cover:    "sprout-tower/sprout-tower.png",
       description: {
         en: "Sprout Tower — environment scene modeled in 3DS Max and rendered with V-Ray.",
         it: "Sprout Tower — scena environment modellata in 3DS Max e renderizzata con V-Ray."
       },
       page: {
-        still: "sprout-tower/sprout-tower.png"
+        still:   "sprout-tower/sprout-tower.png",
+        process: "sprout-tower/process.gif"
       }
     },
     {
@@ -160,7 +161,7 @@ const CONFIG = {
       isThesis: false,
       title:    "AI",
       category: "ai",
-      cover:    "",
+      cover:    "ai/z-image-01.png",
       description: {
         en: "Image-to-video workflows built in ComfyUI. I used a Z-Image workflow to generate the source images, then WAN 2 to convert each image into a video.",
         it: "Workflow image-to-video realizzati in ComfyUI. Ho usato un workflow Z-Image per generare le immagini di partenza, e poi WAN 2 per trasformare ogni immagine in video."
@@ -217,6 +218,11 @@ const CONFIG = {
       texturingStep:   "Texturing",
       renderingStep:   "Rendering",
       compositingStep: "Compositing",
+      sketchDesc:      "Sketch drawn on paper, not made by me",
+      modelingDesc:    "Modeled in Maya and refined in Nomad Sculpt",
+      texturingDesc:   "Textures made in Substance Painter",
+      renderingDesc:   "Rendered with Arnold in Maya",
+      compositingDesc: "Final compositing — final touches in Photoshop",
       turnaroundsLabel:"Turnarounds",
       stillLabel:      "Still",
       assetsLabel:     "Gallery",
@@ -258,6 +264,11 @@ const CONFIG = {
       texturingStep:   "Texturing",
       renderingStep:   "Rendering",
       compositingStep: "Compositing",
+      sketchDesc:      "Sketch disegnato su carta non realizzato da me",
+      modelingDesc:    "Modellato su Maya e definito su Nomad Sculpt",
+      texturingDesc:   "Texture su Substance Painter",
+      renderingDesc:   "Renderizzato con Arnold su Maya",
+      compositingDesc: "Compositing finale — ritocchi finali su Photoshop",
       turnaroundsLabel:"Turnaround",
       stillLabel:      "Still",
       assetsLabel:     "Galleria",
@@ -481,7 +492,24 @@ section{padding:7rem 3rem;}
 }
 .pp-back:hover{color:var(--accent);border-color:var(--accent);}
 .pp-title-small{font-family:var(--font-display);font-size:1.2rem;letter-spacing:0.08em;color:var(--muted2);}
-.pp-body{padding:5rem 3rem;}
+.pp-body{padding:5rem 3rem;position:relative;overflow:hidden;}
+
+/* PROJECT BANNER */
+.pp-banner{
+  position:absolute;
+  top:0;right:0;
+  width:55%;
+  height:clamp(280px,65vh,620px);
+  background-size:cover;
+  background-position:center top;
+  -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 45%, transparent 75%);
+  mask-image:linear-gradient(to left, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 45%, transparent 75%);
+  z-index:0;
+  pointer-events:none;
+}
+.pp-hero-title,.pp-desc,.pp-badge,.pp-section-label,.pp-section-title{
+  position:relative;z-index:1;
+}
 .pp-hero-title{
   font-family:var(--font-display);font-size:clamp(4rem,10vw,9rem);
   letter-spacing:0.02em;line-height:0.88;margin-bottom:1.5rem;
@@ -605,8 +633,25 @@ section{padding:7rem 3rem;}
   border:1px solid var(--border);
   overflow:hidden;display:flex;align-items:center;justify-content:center;
   transition:border-color 0.25s,transform 0.35s;
+  position:relative;
+  cursor:zoom-in;
 }
 .pp-timeline-box:hover{border-color:var(--accent);transform:translateY(-3px);}
+.pp-timeline-hover{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(6,6,6,0.92) 0%, rgba(6,6,6,0.0) 55%);
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  padding:0.75rem;
+  opacity:0;
+  transition:opacity 0.25s ease;
+  pointer-events:none;
+}
+.pp-timeline-box:hover .pp-timeline-hover{opacity:1;}
+.pp-timeline-hover-text{
+  font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;
+  color:var(--accent2);text-align:center;line-height:1.5;
+  margin:0;
+}
 .pp-timeline-box img{width:100%;height:100%;object-fit:cover;display:block;}
 .pp-timeline-empty{
   font-family:var(--font-display);font-size:3rem;color:rgba(240,51,168,0.12);
@@ -616,6 +661,43 @@ section{padding:7rem 3rem;}
   font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;
   color:var(--text);text-transform:uppercase;
   text-align:left;
+}
+
+/* SPROUT TOWER LAYOUT */
+.pp-sprout-layout{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:2px;
+  margin-bottom:5rem;
+  align-items:start;
+}
+.pp-sprout-main{
+  cursor:zoom-in;overflow:hidden;
+  background:var(--bg2);
+  max-height:85vh;
+  display:flex;align-items:flex-start;
+}
+.pp-sprout-main img{
+  width:100%;height:100%;
+  object-fit:contain;
+  display:block;
+  max-height:85vh;
+  transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.pp-sprout-main:hover img{transform:scale(1.02);}
+.pp-sprout-process{
+  background:var(--bg2);
+  overflow:hidden;
+  display:flex;align-items:flex-start;
+}
+.pp-sprout-process img{
+  width:100%;height:auto;
+  display:block;
+  max-height:85vh;
+  object-fit:contain;
+}
+@media(max-width:768px){
+  .pp-sprout-layout{grid-template-columns:1fr;}
 }
 
 /* FULL IMAGE (Environment) */
@@ -1077,7 +1159,9 @@ function renderProjectPage(p){
   document.getElementById('ppBtnEN').classList.toggle('active',LANG==='en');
   document.getElementById('ppBtnIT').classList.toggle('active',LANG==='it');
 
-  let html='';
+  let html = p.cover
+    ? `<div class="pp-banner" style="background-image:url('${p.cover}')"></div>`
+    : '';
 
   if(p.id==='pop-tale'){
     const pg=p.page;
@@ -1141,6 +1225,13 @@ function renderProjectPage(p){
       rendering: L.renderingStep,
       compositing: L.compositingStep
     };
+    const stepDescs = {
+      sketch: L.sketchDesc,
+      modeling: L.modelingDesc,
+      texturing: L.texturingDesc,
+      rendering: L.renderingDesc,
+      compositing: L.compositingDesc
+    };
     html+=`
       <h1 class="pp-hero-title">SKETCH<br><span>TO 3D</span></h1>
       <p class="pp-desc">${p.description[LANG]}</p>
@@ -1153,8 +1244,11 @@ function renderProjectPage(p){
               <span class="pp-timeline-num">${String(i+1).padStart(2,'0')}</span>
               <span class="pp-timeline-line"></span>
             </div>
-            <div class="pp-timeline-box">
+            <div class="pp-timeline-box" ${s.image ? `onclick="openLightbox('${s.image}')"` : ''}>
               ${s.image ? `<img src="${s.image}" alt="${stepLabels[s.stepKey]}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="pp-timeline-empty" style="display:none;">+</div>` : `<div class="pp-timeline-empty">+</div>`}
+              <div class="pp-timeline-hover">
+                <p class="pp-timeline-hover-text">${stepDescs[s.stepKey]||''}</p>
+              </div>
             </div>
             <p class="pp-timeline-label">${stepLabels[s.stepKey]}</p>
           </div>`).join('')}
@@ -1167,8 +1261,13 @@ function renderProjectPage(p){
       <p class="pp-desc">${p.description[LANG]}</p>
 
       <p class="pp-section-label">${L.stillLabel}</p>
-      <div class="pp-image-full">
-        <img src="${pg.still}" alt="Sprout Tower" onclick="openLightbox('${pg.still}')">
+      <div class="pp-sprout-layout">
+        <div class="pp-sprout-main" onclick="openLightbox('${pg.still}')">
+          <img src="${pg.still}" alt="Sprout Tower">
+        </div>
+        ${pg.process ? `<div class="pp-sprout-process">
+          <img src="${pg.process}" alt="Process">
+        </div>` : ''}
       </div>`;
 
   } else if(p.id==='assets'){
