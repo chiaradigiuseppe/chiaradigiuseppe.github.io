@@ -86,23 +86,7 @@ const CONFIG = {
         ]
       }
     },
-    {
-      id:       "character-modeling",
-      isThesis: false,
-      title:    "Character Modeling",
-      category: "modeling",
-      cover:    "",
-      description: {
-        en: "Character modeling — two turnaround presentations.",
-        it: "Character modeling — due presentazioni in turnaround."
-      },
-      page: {
-        turnarounds: [
-          { src: "character-modeling/turnaround-1.mp4" },
-          { src: "character-modeling/turnaround-2.mp4" }
-        ]
-      }
-    },
+
     {
       // TODO: rename this id/title once final name is decided
       id:       "sketch-to-3d",
@@ -139,23 +123,7 @@ const CONFIG = {
         process: "sprout-tower/process.gif"
       }
     },
-    {
-      id:       "assets",
-      isThesis: false,
-      title:    "Assets",
-      category: "modeling",
-      cover:    "",
-      description: {
-        en: "A selection of 3D assets and props.",
-        it: "Una selezione di asset e props 3D."
-      },
-      page: {
-        items: [
-          { type: "video", src: "assets/route66.mp4",          title: { en: "Route 66",        it: "Route 66" } },
-          { type: "video", src: "assets/growlithe-statue.mp4", title: { en: "Growlithe Statue", it: "Statua Growlithe" } },
-        ]
-      }
-    },
+
     {
       id:       "ai",
       isThesis: false,
@@ -1202,19 +1170,7 @@ function renderProjectPage(p){
             </div>
           </div>`).join('')}
       </div>`;
-  } else if(p.id==='character-modeling'){
-    const pg=p.page;
-    html+=`
-      <h1 class="pp-hero-title">CHARACTER<br><span>MODELING</span></h1>
-      <p class="pp-desc">${p.description[LANG]}</p>
 
-      <p class="pp-section-label">${L.turnaroundsLabel}</p>
-      <div class="pp-turnarounds">
-        ${pg.turnarounds.map(t=>`
-          <div class="pp-turnaround-item">
-            <video src="${t.src}" loop muted playsinline preload="metadata" data-lazy-play></video>
-          </div>`).join('')}
-      </div>`;
 
   } else if(p.id==='sketch-to-3d'){
     const pg=p.page;
@@ -1270,27 +1226,7 @@ function renderProjectPage(p){
         </div>` : ''}
       </div>`;
 
-  } else if(p.id==='assets'){
-    const pg=p.page;
-    html+=`
-      <h1 class="pp-hero-title">3D<br><span>ASSETS</span></h1>
-      <p class="pp-desc">${p.description[LANG]}</p>
 
-      <p class="pp-section-label">${L.assetsLabel}</p>
-      <div class="pp-assets-grid">
-        ${(pg.items && pg.items.length) ? pg.items.map(it=>{
-          const isVid = it.type==='video';
-          const media = isVid
-            ? `<video src="${it.src}" loop muted playsinline preload="metadata" data-lazy-play></video>`
-            : `<img src="${it.src}" alt="" loading="lazy">`;
-          const click = isVid ? '' : `onclick="openLightbox('${it.src}')"`;
-          const titleHtml = it.title ? `<div class="pp-asset-title">${it.title[LANG]||it.title.en||''}</div>` : '';
-          return `<div class="pp-asset-item" ${click}>
-            <div class="pp-asset-media">${media}</div>
-            ${titleHtml}
-          </div>`;
-        }).join('') : `<p style="color:var(--muted);font-size:0.9rem;">No assets yet.</p>`}
-      </div>`;
 
   } else if(p.id==='ai'){
     const pg=p.page;
