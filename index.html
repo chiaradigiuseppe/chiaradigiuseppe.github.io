@@ -1099,9 +1099,7 @@ function renderProjectPage(p){
   document.getElementById('ppBtnEN').classList.toggle('active',LANG==='en');
   document.getElementById('ppBtnIT').classList.toggle('active',LANG==='it');
 
-  let html = p.cover
-    ? `<div class="pp-banner" style="background-image:url('${p.cover}')"></div>`
-    : '';
+  let html = '';
 
   if(p.id==='pop-tale'){
     const pg=p.page;
