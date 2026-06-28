@@ -419,6 +419,12 @@ section{padding:7rem 3rem;}
 .pp-back:hover{color:var(--accent);border-color:var(--accent);}
 .pp-title-small{font-family:var(--font-display);font-size:1.2rem;letter-spacing:0.08em;color:var(--muted2);}
 .pp-body{padding:5rem 3rem;position:relative;overflow:hidden;}
+.pp-body::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 20%,transparent 100%);
+}
 
 /* PROJECT BANNER */
 .pp-banner{
@@ -439,6 +445,7 @@ section{padding:7rem 3rem;}
 .pp-hero-title{
   font-family:var(--font-display);font-size:clamp(4rem,10vw,9rem);
   letter-spacing:0.02em;line-height:0.88;margin-bottom:1.5rem;
+  text-align:center;
 }
 .pp-hero-title span{
   display:block;color:transparent;
@@ -449,7 +456,7 @@ section{padding:7rem 3rem;}
   color:var(--bg);background:var(--accent);
   display:inline-block;padding:0.25rem 0.9rem;margin-bottom:1rem;
 }
-.pp-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:4rem;border-bottom:1px solid var(--border);padding-bottom:3rem;}
+.pp-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:640px;margin:0 auto 4rem;text-align:center;border-bottom:1px solid var(--border);padding-bottom:3rem;}
 
 .pp-section-label{
   font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;
@@ -1275,17 +1282,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape')     closeLightbox();
   if(e.key==='ArrowLeft')  lightboxNav(-1);
   if(e.key==='ArrowRight') lightboxNav(1);
-});/* ── LIGHTBOX ── */
-function openLightbox(src){
-  document.getElementById('lightboxImg').src=src;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeLightbox(); }});
+});
 document.getElementById('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLightbox(); });
 
 /* ── CURSOR ── */
