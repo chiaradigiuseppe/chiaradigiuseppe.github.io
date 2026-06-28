@@ -445,7 +445,7 @@ section{padding:7rem 3rem;}
 .pp-hero-title{
   font-family:var(--font-display);font-size:clamp(4rem,10vw,9rem);
   letter-spacing:0.02em;line-height:0.88;margin-bottom:1.5rem;
-  text-align:center;
+  white-space:nowrap;
 }
 .pp-hero-title span{
   display:block;color:transparent;
@@ -456,7 +456,7 @@ section{padding:7rem 3rem;}
   color:var(--bg);background:var(--accent);
   display:inline-block;padding:0.25rem 0.9rem;margin-bottom:1rem;
 }
-.pp-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:640px;margin:0 auto 4rem;text-align:center;border-bottom:1px solid var(--border);padding-bottom:3rem;}
+.pp-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:4rem;border-bottom:1px solid var(--border);padding-bottom:3rem;}
 
 .pp-section-label{
   font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;
@@ -1112,7 +1112,7 @@ function renderProjectPage(p){
     const pg=p.page;
     html+=`
       ${p.isThesis?`<div class="pp-badge">${L.graduationBadge}</div>`:''}
-      <h1 class="pp-hero-title">POP<br><span>TALE</span></h1>
+      <h1 class="pp-hero-title">POP TALE</h1>
       <p class="pp-desc">${p.description[LANG]}</p>
 
       <p class="pp-section-label">${L.finalFilm}</p>
@@ -1125,7 +1125,7 @@ function renderProjectPage(p){
   } else if(p.id==='animation-reel'){
     const pg=p.page;
     html+=`
-      <h1 class="pp-hero-title">ANIMATION<br><span>REEL</span></h1>
+      <h1 class="pp-hero-title">ANIMATION REEL</h1>
       <p class="pp-desc">${p.description[LANG]}</p>
 
       <p class="pp-section-label">${L.reelTitle}</p>
@@ -1166,7 +1166,7 @@ function renderProjectPage(p){
       compositing: L.compositingDesc
     };
     html+=`
-      <h1 class="pp-hero-title">SKETCH<br><span>TO 3D</span></h1>
+      <h1 class="pp-hero-title">SKETCH TO 3D</h1>
       <p class="pp-desc">${p.description[LANG]}</p>
 
       <p class="pp-section-label">${L.processLabel}</p>
